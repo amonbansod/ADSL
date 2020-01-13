@@ -2,7 +2,7 @@
 #include"stack.h"
 using namespace std;
 
-struct node
+struct node				//node structure 
 {
 	node *left;
 	char data;
@@ -14,19 +14,19 @@ class binary_tree
 
 public:
 
-	node *root;
+	node *root;			//declaration of root node
 
 	binary_tree()
 	{
-		root=NULL;
+		root=NULL;		//default constructor
 	}
 
-	void create();
-	void rec_inorder(node *);
-	void preorder(node *);
+	void create();				//function definitions for 1] creating node.
+	void rec_inorder(node *);		//                         2] inorder display
+	void preorder(node *);			//			   3] preorder display
 };
 
-void binary_tree::create()
+void binary_tree::create()			//function definition for creating a node
 {
 	node *temp;
 	node *curr;
@@ -34,9 +34,9 @@ void binary_tree::create()
 		curr=new node;
 
 		cout<<"ENTER DATA(char):	";
-		cin>>curr->data;
+		cin>>curr->data;			
 
-		curr->left=curr->right=NULL;
+		curr->left=curr->right=NULL;		//left and right links of the root are initialised to NULL
 
 		if(root==NULL)
 		{
@@ -44,7 +44,7 @@ void binary_tree::create()
 		}
 		else
 		{
-			temp=root;
+			temp=root;			//root assigned a new name temp(for reference)
 
 		do
 		{
@@ -55,61 +55,61 @@ void binary_tree::create()
 
 			if(ans=='l')
 			{
-				if(temp->left==NULL)
+				if(temp->left==NULL)		//checks whether the left node is NULL
 				{
 					temp->left=curr;
 					break;
 				}
 				else
 				{
-					temp=temp->left;
+					temp=temp->left;	//if the left node is not NULL, it traverses to the leftmost node in the tree
 				}
 			}
 			else
 			{
-				if(temp->right==NULL)
+				if(temp->right==NULL)		//checks whether the right node is NULL
 				{
 					temp->right=curr;
 					break;
 				}
 				else
 				{
-					temp=temp->right;
+					temp=temp->right;	//if the right node is not NULL, it traverses to the rightmost node int the tree
 				}
 			}
-		}while(1);
+		}while(1);					//infinite loop
 
 	}
 }
 
 
-void binary_tree::rec_inorder(node *root)
+void binary_tree::rec_inorder(node *root)		//recursive function definition to display the tree in the inorder format
 {
 	if(root!=NULL)
 	{
-		rec_inorder(root->left);
+		rec_inorder(root->left);		//recursive function call to go to the leftmost node 
 
 		cout<<root->data;
 		cout<<"\t";
 
-		rec_inorder(root->right);
+		rec_inorder(root->right);		//recursive function call to go to the rightmost node
 	}
 }
 
-void binary_tree::preorder(node *root)
+void binary_tree::preorder(node *root)			//recursive function to display the tree in the preorder format
 {
 	if(root!=NULL)
 	{
 		cout<<root->data;
 		cout<<"\t";
-		preorder(root->left);
-		preorder(root->right);
+		preorder(root->left);			//recursive function call to go to the leftmost node 
+		preorder(root->right);			//recursive function call to go to the rightmost node
 	}
 }
 
 
 
-int main()
+int main()						//main function
 {
 	char ch;
 
